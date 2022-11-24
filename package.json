@@ -1,29 +1,20 @@
 {
-  "name": "webpack-start",
+  "name": "webpack4.0",
   "version": "1.0.0",
-  "description": "webpack4",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --config ./webpack.dev.js",
-    "build": "webpack --config ./webpack.build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ron-zhangk/webpack-start.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ron-zhangk/webpack-start/issues"
-  },
-  "homepage": "https://github.com/ron-zhangk/webpack-start#readme",
-  "dependencies": {
-    "css-loader": "^5.2.7",
-    "html-webpack-plugin": "^4.5.2",
-    "style-loader": "^2.0.0",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.2.1"
+  "devDependencies": {
+    "css-loader": "5.0.0",
+    "html-webpack-plugin": "4.5.0",
+    "less": "3.x",
+    "less-loader": "4.x",
+    "style-loader": "1.x",
+    "webpack": "4.x",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
   }
 }

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = 'zfpx'\n\n//# sourceURL=webpack:///./src/a.js?");
+eval("module.exports = 'zfpx';\n\n//# sourceURL=webpack:///./src/a.js?");
 
 /***/ }),
 
@@ -101,10 +101,11 @@ eval("module.exports = 'zfpx'\n\n//# sourceURL=webpack:///./src/a.js?");
 /*!***********************!*\
   !*** ./src/index.css ***!
   \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (1:5)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n> body {\\n|   background-color: #f00;\\n| }\");\n\n//# sourceURL=webpack:///./src/index.css?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./src/index.css?");
 
 /***/ }),
 
@@ -115,7 +116,19 @@ eval("throw new Error(\"Module parse failed: Unexpected token (1:5)\\nYou may ne
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("let str = __webpack_require__(/*! ./a.js */ \"./src/a.js\")\n console.log(str)\n\n __webpack_require__(/*! ./index.css */ \"./src/index.css\")\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("/*\n * @Author: zhangkai\n * @Date: 2022-11-01 15:51:39\n */\nvar str = __webpack_require__(/*! ./a.js */ \"./src/a.js\");\nconsole.log(str);\n__webpack_require__(/*! ./index.css */ \"./src/index.css\");\n__webpack_require__(/*! ./index.less */ \"./src/index.less\");\nvar fn = function fn() {\n  console.log('test log');\n};\nfn();\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/index.less":
+/*!************************!*\
+  !*** ./src/index.less ***!
+  \************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./src/index.less?");
 
 /***/ })
 

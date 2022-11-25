@@ -8,13 +8,26 @@
     "dev": "webpack-dev-server"
   },
   "devDependencies": {
+    "@babel/core": "6.0.0-bridge.1",
+    "@babel/plugin-proposal-class-properties": "7.2.3",
+    "@babel/preset-env": "^7.2.3",
+    "babel": "6.x",
+    "babel-loader": "7.x",
     "css-loader": "5.0.0",
     "html-webpack-plugin": "4.5.0",
     "less": "3.x",
     "less-loader": "4.x",
+    "mini-css-extract-plugin": "1.x",
     "style-loader": "1.x",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "4.x",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.18.6",
+    "autoprefixer": "5.x",
+    "css-minimizer-webpack-plugin": "1.x",
+    "postcss-loader": "4.x"
   }
 }

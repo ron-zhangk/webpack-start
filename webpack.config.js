@@ -4,8 +4,21 @@
  */
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
+let MiniCssExtractPlugin = require('mini-css-extract-plugin');
+let CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+let UglifyJsPlugin = require('uglifyJs-webpack-plugin');
 
 module.exports = {
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+      }),
+      new CssMinimizerPlugin(),
+    ],
+  },
   mode: 'development',
   entry: './src/index.js',
   output: {
@@ -16,47 +29,32 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
-      minify: {
-        removeAttributeQuotes: true,
-        collapseWhitespace: true,
-      },
-      hash: true,
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'main.css',
     }),
   ],
   module: {
     rules: [
-      // css-loader 接续 @import 这种语法的
-      // style-loader 它是把 css 插入到header的标签中
-      // loader的特点 希望单一
-      // loader的用法 字符串只用一个loader  多个loader需要用数组
-      // loader的顺序 默认是从右向左执行 从下至上
-      // loader还可以写成对象方式
       {
-        // 可以处理css文件
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-            options: {
-              insert: 'top'
-            }
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            // 用babel-loader 需要把 es6 -> es5
+            presets: ['@babel/preset-env'],
+            plugin: ['@babel/plugin-proposal-class-properties'],
           },
-          'css-loader',
-        ],
+        },
       },
       {
-        // 可以处理less文件
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
         test: /\.less$/,
-        use: [
-          {
-            loader: 'style-loader',
-            options: {
-              insert: 'top'
-            }
-          },
-          'css-loader', // @import 解析路径
-          'less-loader' // 把less -> css
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
     ],
   },

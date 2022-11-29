@@ -25,7 +25,6 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
-    // publicPath: 'http://www.example.com',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -33,7 +32,7 @@ module.exports = {
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/main.css',
+      filename: 'main.css',
     }),
     new webPack.ProvidePlugin({
       // 在每个模块中都注入$
@@ -45,30 +44,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-withimg-loader',
-          },
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        // 做一个限制 当我们图片小于多少K的时候 用base64 来转化
-        // 否则用file-loader产生真实的图片
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 1,
-              esModal: false,
-              outputPath:'/image/',
-              publicPath: 'http://www.example.com',
-            },
-          },
-        ],
-      },
       {
         test: /\.js$/, // normal 普通的loader
         exclude: /node_modules/,

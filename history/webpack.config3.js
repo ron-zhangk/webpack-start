@@ -7,7 +7,6 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 let UglifyJsPlugin = require('uglifyJs-webpack-plugin');
-let webPack = require('webpack');
 
 module.exports = {
   optimization: {
@@ -25,7 +24,6 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
-    // publicPath: 'http://www.example.com',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -33,41 +31,20 @@ module.exports = {
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/main.css',
-    }),
-    new webPack.ProvidePlugin({
-      // 在每个模块中都注入$
-      $: 'jquery',
+      filename: 'main.css',
     }),
   ],
-  externals: {
-    jQuery: '$',
-  },
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-withimg-loader',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'eslint-loader',
+          options: {
+            enforce: 'pre', // pre 在普通loader之前执行  post 在普通loader之后执行
           },
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        // 做一个限制 当我们图片小于多少K的时候 用base64 来转化
-        // 否则用file-loader产生真实的图片
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 1,
-              esModal: false,
-              outputPath:'/image/',
-              publicPath: 'http://www.example.com',
-            },
-          },
-        ],
+        },
       },
       {
         test: /\.js$/, // normal 普通的loader

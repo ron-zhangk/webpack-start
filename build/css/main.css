@@ -1,0 +1,17 @@
+body{
+  color: yellow;
+  /* transform: rotate(45deg); */
+}
+body {
+  background-color: pink;
+}
+
+div {
+  width: 1000px;
+  height: 1000px;
+  background: url(http://www.example.com/5c551f524e9cc4b3592e7a1999622cca.png);
+}
+body div {
+  border: 1px solid #f00;
+}
+

@@ -1,99 +1,79 @@
 /*
  * @Author: zhangkai
- * @Date: 2022-11-01 18:29:56
+ * @Date: 2022-12-07 16:41:06
  */
-let path = require('path');
+const path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
-let MiniCssExtractPlugin = require('mini-css-extract-plugin');
-let CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-let UglifyJsPlugin = require('uglifyJs-webpack-plugin');
-let webPack = require('webpack');
+let { CleanWebpackPlugin } = require('clean-webpack-plugin');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
+let webpack = require('webpack');
+
+// 1）cleanWebpackPlugin
+// 2）copyWebpackPlugin
+// 3）bannerPlugin 内置的 版权声明插件
 
 module.exports = {
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-      }),
-      new CssMinimizerPlugin(),
-    ],
+  mode: 'production',
+  entry: {
+    home: './src/index.js',
   },
-  mode: 'development',
-  entry: './src/index.js',
+  devServer: {
+    proxy: { // 重写的方式 把请求代理到express服务器上
+      '/api': {
+        target: 'http://localhost:3000',
+        pathRewrite: {
+          '/api': '',
+        },
+      }, // 配置了一个代理
+    },
+  },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
-    // publicPath: 'http://www.example.com',
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'css/main.css',
-    }),
-    new webPack.ProvidePlugin({
-      // 在每个模块中都注入$
-      $: 'jquery',
-    }),
-  ],
-  externals: {
-    jQuery: '$',
-  },
+  // watch: true,
+  // watchOptions: {
+  //   // 监控的选项
+  //   poll: 1000, // 每秒问我 1000
+  //   aggregateTimeout: 500, // 防抖  我一直输入代码
+  //   ignored: /node_modules/, // 不需要进行监控哪个文件
+  // },
+
+  // 1）源码映射  会单独生成一个sourcemap文件  出错了 会标识当前报错的列和行 特点：大而全
+  devtool: 'source-map', //增加映射文件  可以帮我们调试源代码
+  // 2) 不会产生单独的文件 但是可以显示列和行
+  // devtool: 'eval-source-map',
+  // 3) 不会产生列 但是是一个单独的映射文件
+  // devtool:'cheap-module-source-map', // 产生后你可以保留起来
+  // 4) 不会产生文件  集成在打包后的文件中 不会产生列
+  // devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-withimg-loader',
-          },
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        // 做一个限制 当我们图片小于多少K的时候 用base64 来转化
-        // 否则用file-loader产生真实的图片
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 1,
-              esModal: false,
-              outputPath:'/image/',
-              publicPath: 'http://www.example.com',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.js$/, // normal 普通的loader
-        exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
+        test: /\.js$/,
         use: {
           loader: 'babel-loader',
           options: {
-            // 用babel-loader 需要把 es6 -> es5
             presets: ['@babel/preset-env'],
-            plugins: [
-              ['@babel/plugin-proposal-decorators', { legacy: true }],
-              ['@babel/plugin-proposal-class-properties', { loose: true }],
-              '@babel/plugin-transform-runtime',
-            ],
           },
         },
       },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
-        test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
-      },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      filename: 'index.html',
+    }),
+    // new CleanWebpackPlugin(),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: './doc',
+    //       to: './',
+    //     },
+    //   ],
+    // }),
+    // new webpack.BannerPlugin('make 2022 by zk')
+  ],
 };

@@ -1,0 +1,44 @@
+{
+  "name": "webpack4.0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-proposal-decorators": "^7.20.5",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/runtime": "^7.20.6",
+    "babel": "6.x",
+    "babel-loader": "^8.3.0",
+    "css-loader": "5.0.0",
+    "eslint": "^8.28.0",
+    "eslint-loader": "^4.0.2",
+    "expose-loader": "^4.0.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "4.5.0",
+    "html-withimg-loader": "^0.1.16",
+    "less": "3.x",
+    "less-loader": "4.x",
+    "mini-css-extract-plugin": "1.x",
+    "style-loader": "1.x",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^4.1.1",
+    "webpack": "4.x",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-react": "^7.18.6",
+    "autoprefixer": "5.x",
+    "css-minimizer-webpack-plugin": "1.x",
+    "jquery": "^3.6.1",
+    "postcss-loader": "4.x"
+  }
+}

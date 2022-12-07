@@ -1,28 +1,23 @@
-/*
- * @Author: zhangkai
- * @Date: 2022-11-01 15:51:39
- */
-let str = require('./a.js');
-console.log(str);
+// console.log('home')
 
-require('./index.css');
+// class Log {
+//   constructor() {
+//     console.log('111000')
+//   }
+// }
 
-require('./index.less');
+// let log = new Log
 
-let fn = () => {
-  console.log('test log');
+
+// http://localhost:8080 webpack-dev-server 的服务 => 3000
+
+// http-proxy
+let xhr = new XMLHttpRequest();
+
+xhr.open('GET', '/user', true);
+
+xhr.onload = function () {
+  console.log(xhr.response);
 };
-fn();
 
-@log
-class A {
-  a = 1;
-}
-
-let a = new A();
-
-console.log(a.a);
-
-function log(target) {
-  console.log(target);
-}
+xhr.send();

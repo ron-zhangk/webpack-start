@@ -1,3 +1,7 @@
+/*
+ * @Author: zhangkai
+ * @Date: 2022-11-01 16:00:52
+ */
 // webpack 是 node 写出来的  node写法
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,7 +13,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'build'),
     },
-    compress: true,
+    compress: true, // 是否启用gzip压缩
   },
   mode: 'production', // 模式 默认两种  production development
   entry: './src/index.js', // 入口

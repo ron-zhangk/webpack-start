@@ -35,7 +35,7 @@ module.exports = {
   resolve: {
     // 解析 第三方包 common
     modules: [path.resolve('node_modules')],
-    extensions: ['.js', '.jsx', '.css', '.json', '.vue'],
+    extensions: ['.js', '.jsx', '.css', '.json', '.vue'], // 引入文件不用加后缀
     // mainFields: ['style', 'main'], // 寻找顺序
     // mainFiles: [], // 入口文件的名字 没有默认就是index.js
     // alias: { // 别名

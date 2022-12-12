@@ -8,14 +8,14 @@
     "dev": "webpack-dev-server"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.5",
+    "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/plugin-proposal-decorators": "^7.20.5",
     "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/preset-env": "^7.20.2",
     "@babel/runtime": "^7.20.6",
     "babel": "6.x",
-    "babel-loader": "8.x",
+    "babel-loader": "^8.3.0",
     "css-loader": "5.0.0",
     "eslint": "^8.28.0",
     "eslint-loader": "^4.0.2",
@@ -39,6 +39,9 @@
     "autoprefixer": "5.x",
     "css-minimizer-webpack-plugin": "1.x",
     "jquery": "^3.6.1",
-    "postcss-loader": "4.x"
+    "loader-utils": "2.x",
+    "mime": "^3.0.0",
+    "postcss-loader": "4.x",
+    "schema-utils": "^4.0.0"
   }
 }

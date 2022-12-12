@@ -30,59 +30,30 @@ module.exports = {
       },
     },
   },
-  mode: 'development',
+  mode: 'production',
   entry: {
     index: './src/index.js',
-  },
-  devServer: {
-    hot: true, // 启用热更新
-    port: 3000,
-  },
-  resolveLoader: {
-    modules: [path.resolve(__dirname, 'loaders')],
+    other: './src/other.js',
   },
   module: {
     noParse: /jquery/, // 不去解析jquery的依赖库
     rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: {
-          loader: 'banner-loader',
+          loader: 'babel-loader',
           options: {
-            text: 'zhangkai',
-            filename: path.join(__dirname, 'banner.js'),
+            presets: ['@babel/preset-env'],
+            plugins: [
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
+              ['@babel/plugin-proposal-class-properties', { loose: true }],
+              '@babel/plugin-transform-runtime',
+            ],
           },
         },
       },
-      {
-        test: /\.jpg$/,
-        // 目的就是根据图片生成一个md5 发射到dist目录下， file-loader还会返回当前的图片路径
-        // use:'file-loader',
-
-        // url-loader 1）file-loader会处理路径
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 1000 * 1024,
-          },
-        },
-      },
-      // {
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   include: path.resolve(__dirname, 'src'),
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: {
-      //       presets: ['@babel/preset-env'],
-      //       plugins: [
-      //         ['@babel/plugin-proposal-decorators', { legacy: true }],
-      //         ['@babel/plugin-proposal-class-properties', { loose: true }],
-      //         '@babel/plugin-transform-runtime',
-      //       ],
-      //     },
-      //   },
-      // },
     ],
   },
   output: {
@@ -94,6 +65,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new webpack.HotModuleReplacementPlugin(), // 热更新插件
   ],
 };

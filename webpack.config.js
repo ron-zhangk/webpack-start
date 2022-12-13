@@ -45,6 +45,10 @@ module.exports = {
     noParse: /jquery/, // 不去解析jquery的依赖库
     rules: [
       {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      {
         test: /\.js$/,
         use: {
           loader: 'banner-loader',

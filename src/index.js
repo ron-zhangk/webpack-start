@@ -15,7 +15,16 @@
 
 // console.log(str);
 
-import p from '../doc/loader.jpg';
-let img = document.createElement('img');
-img.src = p;
-document.body.appendChild(img);
+
+
+
+
+// import p from '../doc/loader.jpg';
+// let img = document.createElement('img');
+// img.src = p;
+// document.body.appendChild(img);
+
+
+
+
+import './index.less'
